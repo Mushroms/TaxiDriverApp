@@ -14,10 +14,9 @@ import axios from 'axios';
 export default class Queue extends React.Component {
   constructor(props) {
     super(props);
-    const { allDrivers, driver, currentDriverId } = this.props.navigation.state.params;
+    const { currentDriverId } = this.props.navigation.state.params;
 
     this.state = {
-      allDrivers: allDrivers,
       currentDriverId: currentDriverId,
       errorMessage: '',
       driverIsInQueue: false,
@@ -74,45 +73,36 @@ export default class Queue extends React.Component {
   }
 
   getDriverData() {
-    console.log('[getDriverData] state', this.state);
-    console.log('[getDriverData] this', this);
     let driverUid = this.state.currentDriverId;
+    let currentDriverData = {};
+
 
     axios({
       method: 'GET',
       url: 'https://madcatz.org:3005/api/driver/get/' + driverUid,
       headers: {'x-api-key': 'xXxsupersecretapikeyxXx'},
     })
-    .then(function(response){
+    .then((response) => {
       if (response.data.success === 1) {
-        const currentDriverData = response.data.response;
-
-        console.log('[getDriverData] currentDriverData: ', currentDriverData);
-        console.log('[getDriverData] state', this.state);
-        // this.setState({
-        //   currentDriverData: currentDriverData
-        // });
+        currentDriverData = response.data.response;
       }
     })
-    .catch(function(error){
-      console.log('[requestCurrentDriverData] error: ', error);
+    .catch((error) => {
+      console.log('[getDriverData] error: ', error);
+    })
+    .then(() => {
+      this.setState({currentDriverData})
     })
   }
 
   sendQueueSetRequest(navigate) {
-    console.log('our driver in state is: ', this.state.currentDriverData);
-
-
     axios('https://madcatz.org:3005/api/driver/setqueue', {
       method: 'POST',
       data: {'driverUid': this.state.currentDriverId},
       headers: {'x-api-key': 'xXxsupersecretapikeyxXx'},
     })
-
       .then(function(response) {
-        console.log('[sendQueueSetRequest] we got a response: ', response);
         if (response.data.success === 1) {
-
           navigate('QueueResults', {
             driver: response.data.response,
           });
@@ -126,7 +116,7 @@ export default class Queue extends React.Component {
 
 
   renderButton(styles, navigate) {
-    let result = (
+   return (
       <TouchableHighlight
         activeOpacity={1}
         style={styles.callTaxiButton}
@@ -137,14 +127,13 @@ export default class Queue extends React.Component {
         </Text>
       </TouchableHighlight>
     );
-
-    return result;
   }
 
 
 
   renderErrorMessage(styles) {
     if (!this.state.error) return null;
+
     return (
       <View style={styles.errorContainer}>
         <Text style={styles.errorText}>
