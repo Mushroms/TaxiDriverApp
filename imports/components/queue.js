@@ -74,13 +74,8 @@ export default class Queue extends React.Component {
   }
 
   getDriverData() {
-    console.log('[getDriverData] state', this.state);
-    console.log('[getDriverData] this', this);
     let driverUid = this.state.currentDriverId;
-<<<<<<< Updated upstream
-=======
     let currentDriverData = {};
->>>>>>> Stashed changes
 
     axios({
       method: 'GET',
@@ -90,16 +85,13 @@ export default class Queue extends React.Component {
     .then(function(response){
       if (response.data.success === 1) {
         const currentDriverData = response.data.response;
-
-        console.log('[getDriverData] currentDriverData: ', currentDriverData);
-        console.log('[getDriverData] state', this.state);
-        // this.setState({
-        //   currentDriverData: currentDriverData
-        // });
       }
     })
     .catch(function(error){
       console.log('[requestCurrentDriverData] error: ', error);
+    })
+    .then(() => {
+      this.setState({currentDriverData})
     })
   }
 
@@ -113,7 +105,6 @@ export default class Queue extends React.Component {
       data: {'driverUid': this.state.currentDriverId},
       headers: {'x-api-key': 'xXxsupersecretapikeyxXx'},
     })
-<<<<<<< Updated upstream
 
       .then(function(response) {
         console.log('[sendQueueSetRequest] we got a response: ', response);
@@ -128,7 +119,7 @@ export default class Queue extends React.Component {
       .catch(function(error){
         console.log('[sendQueueSetRequest] error: ', error);
       })
-=======
+
     .then((response) => {
       console.log('response', response)
       if (response.data.success === 1) {
@@ -141,16 +132,11 @@ export default class Queue extends React.Component {
     .catch((error) => {
       console.log('[sendQueueSetRequest] error: ', error);
     })
->>>>>>> Stashed changes
   }
 
 
   renderButton(styles, navigate) {
-<<<<<<< Updated upstream
-    let result = (
-=======
     return (
->>>>>>> Stashed changes
       <TouchableHighlight
         activeOpacity={1}
         style={styles.callTaxiButton}
@@ -161,8 +147,6 @@ export default class Queue extends React.Component {
         </Text>
       </TouchableHighlight>
     );
-
-    return result;
   }
 
 
