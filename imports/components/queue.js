@@ -77,6 +77,10 @@ export default class Queue extends React.Component {
     console.log('[getDriverData] state', this.state);
     console.log('[getDriverData] this', this);
     let driverUid = this.state.currentDriverId;
+<<<<<<< Updated upstream
+=======
+    let currentDriverData = {};
+>>>>>>> Stashed changes
 
     axios({
       method: 'GET',
@@ -99,6 +103,7 @@ export default class Queue extends React.Component {
     })
   }
 
+
   sendQueueSetRequest(navigate) {
     console.log('our driver in state is: ', this.state.currentDriverData);
 
@@ -108,6 +113,7 @@ export default class Queue extends React.Component {
       data: {'driverUid': this.state.currentDriverId},
       headers: {'x-api-key': 'xXxsupersecretapikeyxXx'},
     })
+<<<<<<< Updated upstream
 
       .then(function(response) {
         console.log('[sendQueueSetRequest] we got a response: ', response);
@@ -122,11 +128,29 @@ export default class Queue extends React.Component {
       .catch(function(error){
         console.log('[sendQueueSetRequest] error: ', error);
       })
+=======
+    .then((response) => {
+      console.log('response', response)
+      if (response.data.success === 1) {
+        navigate('QueueResults', {
+          driver: this.state.currentDriverData,
+        });
+          console.log('driver', this.state.currentDriverData);
+      }
+    })
+    .catch((error) => {
+      console.log('[sendQueueSetRequest] error: ', error);
+    })
+>>>>>>> Stashed changes
   }
 
 
   renderButton(styles, navigate) {
+<<<<<<< Updated upstream
     let result = (
+=======
+    return (
+>>>>>>> Stashed changes
       <TouchableHighlight
         activeOpacity={1}
         style={styles.callTaxiButton}
