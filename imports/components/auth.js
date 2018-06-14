@@ -10,11 +10,12 @@ import Sockets from 'react-native-sockets';
 import { StackNavigator } from 'react-navigation';
 
 
-
 export default class Auth extends Component {
   constructor(props) {
     super(props)
+
     this.state = { allDrivers: {} }
+
   }
 
 
@@ -41,6 +42,20 @@ export default class Auth extends Component {
         marginLeft: 10,
         marginRight: 10,
       },
+      test_object:{
+        alignSelf: 'center',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 70,
+      },
+
+      testObjectText:{
+        textAlign: 'center',
+        marginTop: 50,
+        lineHeight: 40,
+        height: 40,
+        textAlignVertical: 'center',
+      },
     }
   }
 
@@ -60,14 +75,21 @@ export default class Auth extends Component {
     let params = {
       ID: ''
     };
+    // let testObject = {
+    //   title: 'test object',
+    //   content: 'prived test object',
+    //   data: {response: 'success'},
+    // };
+//console.log('testObject', testObject)
     axios.post('https://madcatz.org:3005/api/driver/auth', data, config)
       .then(function(response) {
         if (response.data.success === 1) {
           console.log('we got a success message boyz!');
-          navigate('Queue',
+          navigate('NewQueuePage',
             {
                currentDriverId: response.data.uid,
                allDrivers: response,
+               //testObject: testObject,
              }
           );
         } else {
@@ -77,31 +99,12 @@ export default class Auth extends Component {
       .catch(function (error) {
         console.log('Here we go and error: ', error);
       });
-
-    // axios.get('https://madcatz.org:3005/api/drivers/getall', config, params)
-    // .then(function(response){
-    //   console.log(response);
-    // })
-    // .catch(function(error){
-    //   console.log(error);
-    //
-    // });
-    
-
    }
-
-    //}
-
-
-    //let allDrivers = {};
-
-    //This id should be in response on success auth request
-    //let currentDriverId = 1;
-
-
 
 
   renderAuthForm(styles, navigate) {
+
+    console.log('testObject', this.props.testObject)
     return (
       <View style={styles.formContainer}>
         <TextInputWithLabel
@@ -129,6 +132,7 @@ export default class Auth extends Component {
           onPress={this.handleFormSubmit.bind(this, navigate)}
           title="Войти"
         />
+
       </View>
     )
   }
