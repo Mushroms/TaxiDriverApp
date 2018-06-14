@@ -75,12 +75,14 @@ export default class Auth extends Component {
     let params = {
       ID: ''
     };
-    // let testObject = {
-    //   title: 'test object',
-    //   content: 'prived test object',
-    //   data: {response: 'success'},
-    // };
-//console.log('testObject', testObject)
+    let testObject = {
+      title: 'Первый заголовок',
+      content: 'Сегодня мы учим React',
+      data: {
+        response: 'success'
+      },
+    };
+
     axios.post('https://madcatz.org:3005/api/driver/auth', data, config)
       .then(function(response) {
         if (response.data.success === 1) {
@@ -89,7 +91,7 @@ export default class Auth extends Component {
             {
                currentDriverId: response.data.uid,
                allDrivers: response,
-               //testObject: testObject,
+               testObject: testObject,
              }
           );
         } else {
@@ -103,8 +105,6 @@ export default class Auth extends Component {
 
 
   renderAuthForm(styles, navigate) {
-
-    console.log('testObject', this.props.testObject)
     return (
       <View style={styles.formContainer}>
         <TextInputWithLabel

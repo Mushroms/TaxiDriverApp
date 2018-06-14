@@ -12,17 +12,9 @@ import { StackNavigator } from 'react-navigation';
 export default class TestObject extends React.Component{
   constructor(props){
     super(props);
-    //const {testObject} = this.props.testObject
-
   }
 
-  getTestObject() {
-    return ({
-      title: 'test object',
-      content: 'prived test object',
-      data: {response: 'success'},
-    });
-  }
+
 
   getStyles(){
     return {
@@ -51,7 +43,8 @@ export default class TestObject extends React.Component{
 
 
   render() {
-    const testObject = this.getTestObject();
+    const testObject = this.props.ivanProps;
+
     const styles = this.getStyles();
 
     return(

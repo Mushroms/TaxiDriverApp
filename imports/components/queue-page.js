@@ -9,80 +9,27 @@ import {
 import { StackNavigator } from 'react-navigation';
 import TestObject from './test';
 
-export default class QueuePage extends React.Component{
-  constructor(props) {
-    super(props);
-    // const {testObject} = this.props;
-    // console.log('test:', this.props.testObject)
-    this.state ={
-      onPressButton: 'Вы вышли из очереди',
-
-    };
-
-    this.onPress = this.onPress.bind(this);
-    //this.testObject = this.testObject.bind(this);
-  }
-
-   onPress() {
-     console.log(this.state.onPressButton);
-   }
-
+export default class QueuePage extends React.Component {
   static navigationOptions = {
     title: 'Очередь',
   }
 
+  constructor(props) {
+    super(props);
 
-  getStyles(){
-    return{
-      queuePageWrapper:{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-      },
-      positionWrapper:{
-        alignSelf: 'center',
-        justifyContent: 'center',
-        alignItems: 'center'
-      },
+    this.state = {
+      onPressButton: 'Вы вышли из очереди',
+    };
 
-      positionText:{
-        textAlign: 'center',
-        marginTop: 50,
-        lineHeight: 40,
-        height: 40,
-        textAlignVertical: 'center',
-      },
+    this.onPress = this.onPress.bind(this);
+  }
 
-      queueButton:{
-        backgroundColor: '#84bae0',
-        padding: 10,
-        borderRadius: 10,
-        shadowOpacity: 0,
-        marginTop: 50,
-      },
-
-      test_object:{
-        alignSelf: 'center',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 70,
-      },
-
-      testObjectText:{
-        textAlign: 'center',
-        marginTop: 50,
-        lineHeight: 40,
-        height: 40,
-        textAlignVertical: 'center',
-      },
-
-    }
+  onPress() {
+    console.log('OnPress button: ', this.state.onPressButton);
   }
 
   render() {
     let testObject = this.props.testObject;
-    const styles = this.getStyles();
 
     return (
       <View style={styles.positionWrapper}>
@@ -98,10 +45,55 @@ export default class QueuePage extends React.Component{
         >
         </Button>
 
-
-        <TestObject/>        
-
+        <TestObject
+          ivanProps={this.props.navigation.state.params.testObject}
+        />
       </View>
     )
+  }
+}
+
+const styles = {
+  queuePageWrapper:{
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+  positionWrapper:{
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+
+  positionText:{
+    textAlign: 'center',
+    marginTop: 50,
+    lineHeight: 40,
+    height: 40,
+    textAlignVertical: 'center',
+  },
+
+  queueButton:{
+    backgroundColor: '#84bae0',
+    padding: 10,
+    borderRadius: 10,
+    shadowOpacity: 0,
+    marginTop: 50,
+  },
+
+  test_object:{
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 70,
+  },
+
+  testObjectText:{
+    textAlign: 'center',
+    marginTop: 50,
+    lineHeight: 40,
+    height: 40,
+    textAlignVertical: 'center',
   }
 }

@@ -99,34 +99,29 @@ export default class Queue extends React.Component {
   sendQueueSetRequest(navigate) {
     console.log('our driver in state is: ', this.state.currentDriverData);
 
-
     axios('https://madcatz.org:3005/api/driver/setqueue', {
       method: 'POST',
       data: {'driverUid': this.state.currentDriverId},
       headers: {'x-api-key': 'xXxsupersecretapikeyxXx'},
     })
+    .then(function(response) {
+      console.log('[sendQueueSetRequest] we got a response: ', response);
 
-      .then(function(response) {
-        console.log('[sendQueueSetRequest] we got a response: ', response);
-        if (response.data.success === 1) {
-
-          navigate('QueueResults', {
-            driver: response.data.response,
-          });
-        }
-
-      })
-      .catch(function(error){
-        console.log('[sendQueueSetRequest] error: ', error);
-      })
-
+      if (response.data.success === 1) {
+        navigate('QueueResults', {
+          driver: response.data.response,
+        });
+      }
+    })
+    .catch(function(error){
+      console.log('[sendQueueSetRequest] error: ', error);
+    })
     .then((response) => {
-      console.log('response', response)
       if (response.data.success === 1) {
         navigate('QueueResults', {
           driver: this.state.currentDriverData,
         });
-          console.log('driver', this.state.currentDriverData);
+        console.log('driver', this.state.currentDriverData);
       }
     })
     .catch((error) => {
