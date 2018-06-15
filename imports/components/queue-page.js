@@ -12,15 +12,12 @@ import TestObject from './test';
 export default class QueuePage extends React.Component{
   constructor(props) {
     super(props);
-    // const {testObject} = this.props;
-    // console.log('test:', this.props.testObject)
     this.state ={
       onPressButton: 'Вы вышли из очереди',
 
     };
 
     this.onPress = this.onPress.bind(this);
-    //this.testObject = this.testObject.bind(this);
   }
 
    onPress() {
@@ -76,7 +73,6 @@ export default class QueuePage extends React.Component{
         height: 40,
         textAlignVertical: 'center',
       },
-
     }
   }
 
@@ -97,10 +93,9 @@ export default class QueuePage extends React.Component{
           title= 'Выйти из очереди'
         >
         </Button>
-
-
-        <TestObject/>        
-
+        <TestObject
+          TestObjectProps = {this.props.navigation.state.params.testObject}
+        />
       </View>
     )
   }

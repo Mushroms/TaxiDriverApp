@@ -13,9 +13,8 @@ import TestObject from './components/test';
 
 const TaxiDriverApp = StackNavigator({
   //Test: {screen: TestObject},
-  NewQueuePage: {screen: QueuePage},
-
   Auth: {screen: Auth},
+  NewQueuePage: {screen: QueuePage},
   Queue: {screen: Queue},
   QueueResults: {screen: QueueResults},
   //OrderResults: {screen: OrderResults},

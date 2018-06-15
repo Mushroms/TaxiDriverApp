@@ -75,11 +75,11 @@ export default class Auth extends Component {
     let params = {
       ID: ''
     };
-    // let testObject = {
-    //   title: 'test object',
-    //   content: 'prived test object',
-    //   data: {response: 'success'},
-    // };
+    let testObject = {
+      title: 'testing',
+      content: 'some content',
+      data: {response: 'success'},
+    };
 //console.log('testObject', testObject)
     axios.post('https://madcatz.org:3005/api/driver/auth', data, config)
       .then(function(response) {
@@ -89,7 +89,7 @@ export default class Auth extends Component {
             {
                currentDriverId: response.data.uid,
                allDrivers: response,
-               //testObject: testObject,
+               testObject: testObject,
              }
           );
         } else {
