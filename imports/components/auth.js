@@ -13,12 +13,8 @@ import { StackNavigator } from 'react-navigation';
 export default class Auth extends Component {
   constructor(props) {
     super(props)
-
     this.state = { allDrivers: {} }
-
   }
-
-
 
   static navigationOptions = {
     title: 'Начало работы',
@@ -75,21 +71,15 @@ export default class Auth extends Component {
     let params = {
       ID: ''
     };
-    let testObject = {
-      title: 'testing',
-      content: 'some content',
-      data: {response: 'success'},
-    };
-//console.log('testObject', testObject)
+
     axios.post('https://madcatz.org:3005/api/driver/auth', data, config)
       .then(function(response) {
         if (response.data.success === 1) {
           console.log('we got a success message boyz!');
-          navigate('NewQueuePage',
+          navigate('Queue',
             {
                currentDriverId: response.data.uid,
                allDrivers: response,
-               testObject: testObject,
              }
           );
         } else {
@@ -100,7 +90,6 @@ export default class Auth extends Component {
         console.log('Here we go and error: ', error);
       });
    }
-
 
   renderAuthForm(styles, navigate) {
 

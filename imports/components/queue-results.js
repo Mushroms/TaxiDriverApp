@@ -12,12 +12,12 @@ import TextInputWithLabel from './ui/TextInputWithLabel';
 export default class QueueResults extends React.Component {
   constructor(props) {
     super(props)
-    const queuePosition = '';
+    const queue_position = '';
     const { driver } = this.props.navigation.state.params;
 
     this.state = {
       driver,
-      queuePosition,
+      queue_position,
     }
   }
 
@@ -31,17 +31,21 @@ export default class QueueResults extends React.Component {
         fontSize: 25,
         marginTop: 50,
       },
+
       textInput: {
         height: 40,
       },
+
       formContainer: {
         marginLeft: 10,
         marginRight: 10,
       },
+
       currentQueueText: {
         marginLeft: 10,
         marginRight: 10,
       },
+
       driverDataContainer: {
         flexDirection: 'column',
         justifyContent: 'space-between',
@@ -49,15 +53,17 @@ export default class QueueResults extends React.Component {
         marginLeft: 10,
         marginRight: 10,
       },
+
       driverDataRow: {
         width: '100%',
       },
-      queueDataWrapper: {
 
+      queueDataWrapper: {
         alignSelf: 'center',
         justifyContent: 'center',
         alignItems: 'center'
       },
+
       queuePositionTextWrapper: {
         textAlign: 'center',
         marginTop: 50,
@@ -65,12 +71,14 @@ export default class QueueResults extends React.Component {
         height: 40,
         textAlignVertical: 'center',
       },
+
       queuePositionText: {
         fontWeight: 'bold',
         fontSize: 30,
         lineHeight: 40,
         height: 40,
       },
+
       leaveQueueButton: {
         backgroundColor: '#84bae0',
         padding: 10,
@@ -78,11 +86,13 @@ export default class QueueResults extends React.Component {
         shadowOpacity: 0,
         marginTop: 50,
       },
+
       leaveQueueButtonText: {
         fontSize: 18,
         color: '#fff',
         textAlign: 'center',
       },
+
       ordersWrapper: {
         marginLeft: 10,
         marginRight: 10,
@@ -153,13 +163,14 @@ export default class QueueResults extends React.Component {
 
 
   renderDriverQueueInfo(styles, navigate, queuePosition) {
+    //console.log('qeueuPosition:', this.props.navigation.state.params)
     return (
       <View style={styles.queueDataWrapper}>
         <Text style={styles.queuePositionTextWrapper}>
           Ваша позиция в очереди:
         </Text>
         <Text style={styles.queuePositionText}>
-          {queuePosition}
+          {this.props.navigation.state.params.driver.queue_position}
         </Text>
 
         <TouchableHighlight

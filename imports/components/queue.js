@@ -107,11 +107,11 @@ export default class Queue extends React.Component {
     })
 
       .then(function(response) {
-        console.log('[sendQueueSetRequest] we got a response: ', response);
+        //console.log('[sendQueueSetRequest] we got a response: ', response);
         if (response.data.success === 1) {
 
           navigate('QueueResults', {
-            driver: response.data.response,
+            driver: response.data,
           });
         }
 
@@ -134,7 +134,6 @@ export default class Queue extends React.Component {
     })
   }
 
-
   renderButton(styles, navigate) {
     return (
       <TouchableHighlight
@@ -149,8 +148,6 @@ export default class Queue extends React.Component {
     );
   }
 
-
-
   renderErrorMessage(styles) {
     if (!this.state.error) return null;
     return (
@@ -161,8 +158,6 @@ export default class Queue extends React.Component {
       </View>
     );
   }
-
-
 
   render () {
     const { navigate } = this.props.navigation;
