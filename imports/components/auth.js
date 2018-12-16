@@ -7,6 +7,7 @@ import { StackNavigator } from "react-navigation";
 export default class Auth extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       username: "",
       password: ""

@@ -36,7 +36,8 @@ import com.android.build.OutputFile
  *   // whether to disable dev mode in custom build variants (by default only disabled in release)
  *   // for example: to disable dev mode in the staging build type (if configured)
  *   devDisabledInStaging: true,
- *   // The configuration property can be in the following formats
+ *   // The configuration property can be in thcom.android.ide.common.process.ProcessException: Failed to execute aapt
+e following formats
  *   //         'devDisabledIn${productFlavor}${buildType}'
  *   //         'devDisabledIn${buildType}'
  *
@@ -94,13 +95,13 @@ def enableSeparateBuildPerCPUArchitecture = false
 def enableProguardInReleaseBuilds = false
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    compileSdkVersion 26
+    buildToolsVersion "26.0.1"
 
     defaultConfig {
         applicationId "com.taxidriverapp"
         minSdkVersion 16
-        targetSdkVersion 22
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         ndk {
@@ -139,6 +140,10 @@ android {
 dependencies {
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile "com.android.support:appcompat-v7:23.0.1"
+    compile 'com.android.support:appcompat-v7:26+'
+    compile 'com.android.support:design:26+'
+    compile 'com.android.support:recyclerview-v7:26+'
+    compile 'com.android.support:cardview-v7:26+'
     compile "com.facebook.react:react-native:+"  // From node_modules
     compile project(':react-native-sockets')
 
