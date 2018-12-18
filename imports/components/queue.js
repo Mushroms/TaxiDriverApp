@@ -21,6 +21,7 @@ export default class Queue extends React.Component {
 
     this.state = {
       allDrivers: allDrivers,
+      currentDriverId: currentDriverId,
       errorMessage: "",
       driverIsInQueue: false,
       currentDriverData: {}
@@ -74,7 +75,7 @@ export default class Queue extends React.Component {
   }
 
   getDriverData() {
-    let driverUid = this.props.currentDriverId;
+    let driverUid = this.state.currentDriverId;
     let currentDriverData = {};
 
     axios({
@@ -96,11 +97,11 @@ export default class Queue extends React.Component {
   }
 
   sendQueueSetRequest(navigate) {
-    console.log("our driver in state is: ", this.state.currentDriverData);
+    console.log("our driver in state is: ", this.state.currentDriverData); // void!! 
 
     axios("https://madcatz.org:3005/api/driver/setqueue", {
       method: "POST",
-      data: { driverUid: this.props.currentDriverId },
+      data: { driverUid: this.state.currentDriverId },
       headers: { "x-api-key": "xXxsupersecretapikeyxXx" }
     })
       .then(function(response) {

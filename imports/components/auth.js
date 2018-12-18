@@ -9,8 +9,8 @@ export default class Auth extends Component {
     super(props);
 
     this.state = {
-      username: "",
-      password: ""
+      username: "driver",
+      password: "1234"
     };
   }
 
@@ -53,7 +53,7 @@ export default class Auth extends Component {
   }
 
   handleFormSubmit(navigate) {
-    let currentDriverId = 1;
+    //let currentDriverId = 1;
     let axios = require("axios");
     let config = {
       headers: { "x-api-key": "xXxsupersecretapikeyxXx" }
