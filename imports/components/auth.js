@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Text, View, TextInput, Button } from "react-native";
 import TextInputWithLabel from "./ui/TextInputWithLabel";
-import Sockets from "react-native-sockets";
 import { StackNavigator } from "react-navigation";
 
 export default class Auth extends Component {

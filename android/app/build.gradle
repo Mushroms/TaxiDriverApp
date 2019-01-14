@@ -145,7 +145,7 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:26+'
     compile 'com.android.support:cardview-v7:26+'
     compile "com.facebook.react:react-native:+"  // From node_modules
-    compile project(':react-native-sockets')
+    
 
 }
 
